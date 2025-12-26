@@ -8,6 +8,7 @@ export default withNextIntl({
     quietDeps: true,
   },
   reactStrictMode: true,
+  output: 'standalone', // Enable standalone mode for smaller Docker images
 
   async rewrites() {
     return [
