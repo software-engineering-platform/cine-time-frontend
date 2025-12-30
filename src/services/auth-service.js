@@ -11,7 +11,7 @@ function parseJSONSafely(text) {
 }
 
 export async function login({ phoneOrEmail, password, signal } = {}) {
-  const response = await fetch(`${config.apiURL}/login`, {
+  const response = await fetch(`${config.apiURL}/api/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
