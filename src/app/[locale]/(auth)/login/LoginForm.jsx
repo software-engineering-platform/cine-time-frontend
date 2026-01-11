@@ -15,6 +15,7 @@ export default function LoginForm({ onLogin, pending }) {
   const [formData, setFormData] = useState({ identifier: "", password: "" });
   const [rememberMe, setRememberMe] = useState(true);
   const [fieldErrors, setFieldErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const resolveErrorMessage = (error) =>
     error?.message ?? (error?.key ? tErrors(error.key, { default: "" }) : "");
@@ -79,7 +80,7 @@ export default function LoginForm({ onLogin, pending }) {
           </InputGroup.Text>
           <Form.Control
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={formData.password}
             onChange={updateField("password")}
             placeholder={tPlaceholders("enterPassword")}
@@ -87,6 +88,14 @@ export default function LoginForm({ onLogin, pending }) {
             required
             isInvalid={!!fieldErrors.password}
           />
+          <Button
+            variant="outline-light"
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            <i className={showPassword ? "pi pi-eye-slash" : "pi pi-eye"} />
+          </Button>
           <Form.Control.Feedback type="invalid">
             {resolveErrorMessage(fieldErrors.password)}
           </Form.Control.Feedback>

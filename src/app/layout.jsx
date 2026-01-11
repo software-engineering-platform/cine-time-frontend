@@ -8,6 +8,10 @@ export const metadata = {
   description:
     "CineTime – En yeni filmleri keşfedin ve sinema biletinizi kolayca alın.",
   keywords: ["sinema", "bilet", "film", "vizyondakiler", "CineTime"],
+  icons: {
+    icon: "/images/cinetime-logo.png",
+    apple: "/images/cinetime-logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
