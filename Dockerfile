@@ -47,6 +47,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
 
+# Ensure public directory is writable for runtime env injection
+RUN chown -R nextjs:nodejs /app/public
+
 # Switch to non-root user
 USER nextjs
 
@@ -58,5 +61,6 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # Start Next.js standalone server (much more memory efficient)
+# Limit Node.js heap to 512MB to prevent memory bloat
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
-CMD ["node", "server.js"]
+CMD ["node", "--max-old-space-size=512", "server.js"]
