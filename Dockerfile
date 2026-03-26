@@ -62,5 +62,5 @@ ENV HOSTNAME="0.0.0.0"
 
 # Start Next.js standalone server (much more memory efficient)
 # Limit Node.js heap to 512MB to prevent memory bloat
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/app/docker-entrypoint.sh"]
 CMD ["node", "--max-old-space-size=512", "server.js"]
